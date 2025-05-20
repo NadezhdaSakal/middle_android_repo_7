@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -58,7 +58,7 @@ fun ProductDetailsScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(
-                            Icons.Default.ArrowBack,
+                            Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = stringResource(R.string.back)
                         )
                     }
@@ -74,7 +74,8 @@ fun ProductDetailsScreen(
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .semantics(mergeDescendants = true) { }
+                        .fillMaxSize()
                     .padding(16.dp)
             ) {
                 AsyncImage(
@@ -120,7 +121,9 @@ fun ProductDetailsScreen(
                             )
                         }
                     },
-                    modifier = Modifier.fillMaxWidth().semantics {
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .semantics {
                         contentDescription = buttonDescription
                     }
                 ) {
